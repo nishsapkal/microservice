@@ -1,5 +1,4 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=build\libs\rest-service-0.0.1-SNAPSHOT.jar
-COPY ${JAR_FILE} app.jar
-EXPOSE 9090
+FROM adoptopenjdk:11-jre-hotspot as builder
+ARG JAR_FILE=rest-service-0.0.1-SNAPSHOT.jar
+ADD ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
